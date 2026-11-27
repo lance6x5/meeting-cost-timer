@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-11-27
+
+### Added
+- Anonymous visit counter in the footer ("12,345 visits") via the open-source Abacus counter. One count per
+  browser session; Do Not Track / Global Privacy Control respected; not counted on localhost; no cookies and
+  no app or user data sent. Fails silently and is never cached by the service worker.
+- Visits badge and a "Privacy & analytics" section in the README.
+
 ## [1.1.0] - 2026-11-27
 
 ### Added
@@ -36,6 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Meeting history in localStorage with totals per currency; JSON export / import and reset all data.
 - Installable offline PWA, light and dark mode, keyboard accessible; deployed to GitHub Pages.
 
-[Unreleased]: https://github.com/lance6x5/meeting-cost-timer/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/lance6x5/meeting-cost-timer/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/lance6x5/meeting-cost-timer/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/lance6x5/meeting-cost-timer/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/lance6x5/meeting-cost-timer/releases/tag/v1.0.0

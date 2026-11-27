@@ -18,6 +18,7 @@ import { encodeSetup, decodeSetup } from './url.js';
 import { Stopwatch } from './timer.js';
 import * as store from './storage.js';
 import { buildIssueUrl } from './feedback.js';
+import { getVisitCount, formatVisits } from './visits.js';
 
 /* ---------- DOM refs ---------- */
 const $ = (id) => document.getElementById(id);
@@ -537,4 +538,13 @@ document.addEventListener('keydown', (e) => {
     fb.open = false;
     fb.querySelector('summary').focus();
   }
+});
+
+/* ---------- Anonymous visit counter ---------- */
+// Fire-and-forget; shows nothing if the counter is unreachable, blocked or skipped.
+getVisitCount().then((n) => {
+  if (n == null) return;
+  const visits = $('visits');
+  visits.textContent = formatVisits(n);
+  visits.hidden = false;
 });

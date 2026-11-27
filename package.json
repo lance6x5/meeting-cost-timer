@@ -1,7 +1,7 @@
 {
   "name": "meeting-cost-timer",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A live ticker showing how much a meeting is costing in real time.",
   "type": "module",
   "scripts": {

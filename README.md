@@ -2,6 +2,8 @@
 
 # Burnrate
 
+![Visits](https://abacus.jasoncameron.dev/get/lance6x5.github.io/meeting-cost-timer/shield)
+
 **Every minute has a price tag.** A fun, shareable live ticker that shows how much a meeting is costing in real time.
 
 _Repository: `meeting-cost-timer`_
@@ -59,6 +61,7 @@ src/storage.js           localStorage wrappers, export/import
 src/config/milestones.js Editable milestone list and approximate FX rates
 src/style.css            Styles (CSS variables, light/dark)
 src/feedback.js          Builds pre-filled GitHub issue URLs
+src/visits.js            Anonymous visit counter (Abacus)
 public/                  Logo, favicon and PWA icons
 ```
 
@@ -77,8 +80,18 @@ Burnrate follows [Semantic Versioning](https://semver.org/): **MAJOR** for break
 (e.g. stored history or export format), **MINOR** for new features, **PATCH** for fixes.
 The current version is shown in the app footer. See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
+## Privacy & analytics
+
+Burnrate counts one anonymous page load per browser session using the open-source
+[Abacus](https://github.com/JasonLovesDoggo/abacus) counter, shown as "N visits" in the footer.
+No cookies are used and no personal or meeting data is sent or stored; only a bare request to the counter
+is made. Do Not Track and Global Privacy Control are respected (the count is then only read, never
+incremented), and nothing is counted on `localhost`. Like any web request, it reveals your IP address to
+the counter service. The count is approximate (it includes bots and is not unique visitors) and public.
+
 ## Notes
 
-- All data stays in your browser. No backend, no tracking, no API keys.
+- All meeting data stays in your browser. No backend, no API keys; the only outside request is the
+  anonymous visit counter described above.
 - Milestone thresholds are defined in USD and scaled by approximate exchange rates. Recorded meeting
   costs are never converted; history totals are shown per currency.
