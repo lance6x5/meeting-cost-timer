@@ -1,16 +1,16 @@
 /* ---------- Theme ---------- */
 :root {
   color-scheme: light dark;
-  --bg: #f6f7f9;
+  --bg: #faf7f5;
   --surface: #ffffff;
   --text: #111827;
   --muted: #4b5563;
   --border: #d1d5db;
-  --primary: #15803d;
+  --primary: #c2410c;
   --primary-text: #ffffff;
   --danger: #b91c1c;
   --focus: #2563eb;
-  --stage-bg: #0f172a;
+  --stage-bg: #1c0f08;
   --stage-text: #f8fafc;
   --radius: 14px;
   --font: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -19,16 +19,16 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0b1120;
-    --surface: #111827;
+    --bg: #120c09;
+    --surface: #1c1410;
     --text: #f3f4f6;
     --muted: #9ca3af;
-    --border: #374151;
-    --primary: #22c55e;
-    --primary-text: #052e16;
+    --border: #44342b;
+    --primary: #fb923c;
+    --primary-text: #431407;
     --danger: #f87171;
     --focus: #60a5fa;
-    --stage-bg: #020617;
+    --stage-bg: #0c0604;
   }
 }
 
@@ -201,9 +201,9 @@ main:focus {
   border-color: rgba(255, 255, 255, 0.35);
 }
 .stage .btn-primary {
-  background: #22c55e;
-  border-color: #22c55e;
-  color: #052e16;
+  background: #fb923c;
+  border-color: #fb923c;
+  color: #431407;
 }
 .stage .btn-ghost {
   background: transparent;
@@ -485,4 +485,65 @@ dialog::backdrop {
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* ---------- Branding + feedback ---------- */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.brand h1 {
+  margin: 0;
+  color: var(--primary);
+}
+.brand .tagline {
+  margin: 0.15rem 0 0;
+}
+.brand-mark {
+  flex: none;
+  border-radius: 10px;
+}
+.feedback {
+  position: relative;
+}
+.feedback > summary {
+  list-style: none;
+  cursor: pointer;
+}
+.feedback > summary::-webkit-details-marker {
+  display: none;
+}
+.feedback-panel {
+  position: absolute;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 16rem;
+  margin-top: 0.4rem;
+  padding: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+.feedback-panel .btn {
+  text-decoration: none;
+  color: var(--text);
+}
+.feedback-note {
+  margin: 0;
+  font-size: 0.8rem;
+}
+.site-footer a {
+  color: inherit;
 }

@@ -82,7 +82,7 @@ export function sanitizeEntry(e) {
 /** Build the JSON export payload. */
 export function buildExport(setup, history) {
   return {
-    app: 'meeting-cost-timer',
+    app: 'meeting-cost-timer', // stable data id; do not rename (keeps old exports importable)
     version: EXPORT_VERSION,
     exportedAt: new Date().toISOString(),
     setup,
@@ -97,7 +97,7 @@ export function buildExport(setup, history) {
 export function parseImport(text) {
   const data = JSON.parse(text);
   if (!data || typeof data !== 'object' || data.app !== 'meeting-cost-timer') {
-    throw new Error('This file is not a Meeting Cost Timer export.');
+    throw new Error('This file is not a Burnrate export.');
   }
   const history = Array.isArray(data.history) ? data.history.map(sanitizeEntry).filter(Boolean) : [];
   return { setup: data.setup && typeof data.setup === 'object' ? data.setup : null, history };

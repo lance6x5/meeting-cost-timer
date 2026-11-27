@@ -1,5 +1,5 @@
 /**
- * Meeting Cost Timer - UI wiring.
+ * Burnrate (meeting-cost-timer) - UI wiring.
  * Pure logic lives in cost.js / format.js / url.js / timer.js / storage.js.
  */
 import './style.css';
@@ -17,6 +17,7 @@ import { formatMoney, formatClock, buildSummary } from './format.js';
 import { encodeSetup, decodeSetup } from './url.js';
 import { Stopwatch } from './timer.js';
 import * as store from './storage.js';
+import { buildIssueUrl } from './feedback.js';
 
 /* ---------- DOM refs ---------- */
 const $ = (id) => document.getElementById(id);
@@ -451,7 +452,7 @@ el.exportBtn.addEventListener('click', () => {
   });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = `meeting-cost-timer-${new Date().toISOString().slice(0, 10)}.json`;
+  a.download = `burnrate-${new Date().toISOString().slice(0, 10)}.json`;
   document.body.appendChild(a);
   a.click();
   a.remove();
@@ -521,4 +522,19 @@ if (watch.running) rafId = requestAnimationFrame(loop);
 // Re-render immediately when returning to a backgrounded tab.
 document.addEventListener('visibilitychange', () => {
   if (!document.hidden) renderTicker();
+});
+
+/* ---------- Version + feedback ---------- */
+const APP_VERSION = typeof __APP_VERSION__ === 'string' ? __APP_VERSION__ : '';
+if (APP_VERSION) $('app-version').textContent = `v${APP_VERSION}`;
+// Only the app version and browser user agent go into the URL - never meeting data.
+const feedbackInfo = { version: APP_VERSION, userAgent: navigator.userAgent };
+$('fb-bug').href = buildIssueUrl('bug', feedbackInfo);
+$('fb-feature').href = buildIssueUrl('feature', feedbackInfo);
+document.addEventListener('keydown', (e) => {
+  const fb = $('feedback');
+  if (e.key === 'Escape' && fb.open) {
+    fb.open = false;
+    fb.querySelector('summary').focus();
+  }
 });

@@ -1,29 +1,37 @@
+import { readFileSync } from 'node:fs';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
+
+const pkg = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8'));
 
 // base must match the GitHub Pages repo path.
 export default defineConfig({
   base: '/meeting-cost-timer/',
+  define: {
+    __APP_VERSION__: JSON.stringify(pkg.version)
+  },
   plugins: [
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg'],
+      includeAssets: ['favicon.svg', 'logo.svg', 'logo-mark.svg', 'apple-touch-icon.png'],
       manifest: {
-        name: 'Meeting Cost Timer',
-        short_name: 'MeetingCost',
-        description: 'A live ticker showing how much a meeting is costing in real time.',
+        name: 'Burnrate - Meeting Cost Timer',
+        short_name: 'Burnrate',
+        description: 'Burnrate: every minute has a price tag. A live ticker showing how much a meeting is costing in real time.',
         start_url: '/meeting-cost-timer/',
         scope: '/meeting-cost-timer/',
         display: 'standalone',
-        background_color: '#0f172a',
-        theme_color: '#16a34a',
+        background_color: '#1c0f08',
+        theme_color: '#c2410c',
         icons: [
-          { src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' },
-          { src: 'icon-maskable.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'maskable' }
+          { src: 'icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+          { src: 'icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+          { src: 'icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+          { src: 'favicon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' }
         ]
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg}']
+        globPatterns: ['**/*.{js,css,html,svg,png}']
       }
     })
   ],

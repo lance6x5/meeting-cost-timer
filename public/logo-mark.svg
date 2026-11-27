@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Burnrate logo">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f97316"/>
+      <stop offset="1" stop-color="#c2410c"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <path d="M256 64C300 146 396 196 396 316C396 398 333 456 256 456C179 456 116 398 116 316C116 244 160 204 190 158C197 206 216 234 242 248C236 186 236 122 256 64Z" fill="#fff7ed"/>
+  <circle cx="256" cy="334" r="74" fill="#c2410c"/>
+  <path d="M256 334V286M256 334L290 352" stroke="#fff7ed" stroke-width="18" stroke-linecap="round" fill="none"/>
+</svg>

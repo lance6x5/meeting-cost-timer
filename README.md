@@ -1,6 +1,10 @@
-# Meeting Cost Timer
+<p align="center"><img src="public/logo.svg" alt="Burnrate" width="420" /></p>
 
-A fun, shareable live ticker that shows how much a meeting is costing in real time.
+# Burnrate
+
+**Every minute has a price tag.** A fun, shareable live ticker that shows how much a meeting is costing in real time.
+
+_Repository: `meeting-cost-timer`_
 
 **Live app:** https://lance6x5.github.io/meeting-cost-timer/
 
@@ -54,8 +58,24 @@ src/timer.js             Drift-free stopwatch
 src/storage.js           localStorage wrappers, export/import
 src/config/milestones.js Editable milestone list and approximate FX rates
 src/style.css            Styles (CSS variables, light/dark)
-public/                  SVG icons
+src/feedback.js          Builds pre-filled GitHub issue URLs
+public/                  Logo, favicon and PWA icons
 ```
+
+## Feedback & issues
+
+Found a bug or have an idea? Use the **Feedback** menu in the app header, or go to the
+[Issues page](https://github.com/lance6x5/meeting-cost-timer/issues) and pick a
+[bug report](https://github.com/lance6x5/meeting-cost-timer/issues/new?template=bug_report.yml) or
+[feature request](https://github.com/lance6x5/meeting-cost-timer/issues/new?template=feature_request.yml).
+The in-app links only pre-fill the app version and your browser; a free GitHub account is required.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the triage flow.
+
+## Versioning
+
+Burnrate follows [Semantic Versioning](https://semver.org/): **MAJOR** for breaking data/schema changes
+(e.g. stored history or export format), **MINOR** for new features, **PATCH** for fixes.
+The current version is shown in the app footer. See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
 ## Notes
 
