@@ -552,3 +552,23 @@ dialog::backdrop {
   font-size: 0.8rem;
   opacity: 0.8;
 }
+
+.studio-credit {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem 0.4rem;
+  font-size: 0.8rem;
+}
+.studio-credit img {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+.studio-credit a {
+  text-underline-offset: 2px;
+}
+.studio-credit a:hover {
+  color: var(--text);
+}

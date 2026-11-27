@@ -6,6 +6,10 @@
 
 **Every minute has a price tag.** A fun, shareable live ticker that shows how much a meeting is costing in real time.
 
+A **Silverlight DevTech** project · © 2026 Silverlight DevTech. Source-available under the [PolyForm Noncommercial License 1.0.0](LICENSE.md).
+
+More apps: https://lance6x5.github.io/
+
 _Repository: `meeting-cost-timer`_
 
 **Live app:** https://lance6x5.github.io/meeting-cost-timer/
@@ -95,3 +99,17 @@ the counter service. The count is approximate (it includes bots and is not uniqu
   anonymous visit counter described above.
 - Milestone thresholds are defined in USD and scaled by approximate exchange rates. Recorded meeting
   costs are never converted; history totals are shown per currency.
+
+## License
+
+Burnrate is **source-available**, not open source in the OSI sense. It is licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE.md) (SPDX: `PolyForm-Noncommercial-1.0.0`).
+
+- **Free for noncommercial use:** personal, educational, research, nonprofit and other noncommercial use is allowed under the license terms.
+- **Commercial use needs a separate license:** this includes selling it, hosting it as a paid service, or using it inside a business product. Commercial licenses are available from Silverlight DevTech; to ask, open a [GitHub issue on this repo](https://github.com/lance6x5/meeting-cost-timer/issues).
+- **Redistribution:** anyone who shares a copy must keep [LICENSE.md](LICENSE.md) and its `Required Notice:` line.
+
+Third-party dependencies keep their own licenses.
+
+## Trademarks
+
+Burnrate and its logo are trademarks of Silverlight DevTech. The license covers the code only, not the names or logos, so forks must use a different name and logo.

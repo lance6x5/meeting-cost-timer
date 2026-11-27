@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-11-27
+
+### Added
+- `LICENSE.md`: the PolyForm Noncommercial License 1.0.0, with the `Required Notice: Copyright 2026 Silverlight DevTech` line. Earlier versions had no license file (all rights reserved).
+- Studio credit in the app footer: Silverlight DevTech mark (`public/silverlight-mark.svg`), "© 2026 Silverlight DevTech", a "Noncommercial license" link to `LICENSE.md`, and a "More apps" link to the apps homepage (https://lance6x5.github.io/).
+- `author` and `copyright` meta tags in `index.html`.
+- README: studio credit line, "License" and "Trademarks" sections; CONTRIBUTING: "Licensing of contributions".
+
+### Changed
+- Licensed under the PolyForm Noncommercial License 1.0.0 (source-available; commercial use requires a separate license from Silverlight DevTech). `package.json` now sets `"license": "PolyForm-Noncommercial-1.0.0"` and `"author": "Silverlight DevTech"`.
+
 ## [1.2.0] - 2026-11-27
 
 ### Added
@@ -44,7 +55,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Meeting history in localStorage with totals per currency; JSON export / import and reset all data.
 - Installable offline PWA, light and dark mode, keyboard accessible; deployed to GitHub Pages.
 
-[Unreleased]: https://github.com/lance6x5/meeting-cost-timer/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/lance6x5/meeting-cost-timer/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/lance6x5/meeting-cost-timer/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/lance6x5/meeting-cost-timer/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/lance6x5/meeting-cost-timer/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/lance6x5/meeting-cost-timer/releases/tag/v1.0.0

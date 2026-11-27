@@ -18,6 +18,10 @@ form. Please don't include personal or confidential data.
 4. Changes are recorded under `## [Unreleased]` in [CHANGELOG.md](CHANGELOG.md) and moved into a
    versioned section when released (see the Versioning section in the README).
 
+## Licensing of contributions
+
+Burnrate is licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE.md). By submitting a pull request, you agree that your contribution is licensed to Silverlight DevTech under the same terms, and that Silverlight DevTech may also offer it under its commercial licenses.
+
 ## Development
 
 ```bash
