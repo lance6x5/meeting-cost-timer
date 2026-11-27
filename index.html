@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A live ticker showing how much a meeting is costing in real time." />
+    <meta name="theme-color" content="#16a34a" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="apple-touch-icon" href="icon.svg" />
+    <title>Meeting Cost Timer</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <h1>Meeting Cost Timer</h1>
+      <p class="tagline">Watch the money tick by, in real time.</p>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <!-- Live ticker. This element is what goes fullscreen in presentation mode. -->
+      <section id="stage" class="stage card" aria-labelledby="stage-heading">
+        <h2 id="stage-heading" class="visually-hidden">Live meeting cost</h2>
+        <p id="stage-title" class="stage-title" hidden></p>
+        <div class="counter" id="counter" role="timer" aria-live="off" aria-atomic="true">$0.00</div>
+        <div class="meta">
+          <span>Elapsed <strong id="elapsed">0:00</strong></span>
+          <span><strong id="people">0</strong> people</span>
+          <span><strong id="rate">$0</strong>/hour</span>
+        </div>
+        <p id="milestone" class="milestone" aria-live="polite" aria-atomic="true"></p>
+
+        <div class="controls" role="group" aria-label="Timer controls">
+          <button id="btn-start" class="btn btn-primary" type="button">Start</button>
+          <button id="btn-reset" class="btn" type="button">Reset</button>
+          <button id="btn-save" class="btn" type="button">End &amp; save</button>
+          <button id="btn-present" class="btn" type="button" aria-pressed="false">Presentation mode</button>
+        </div>
+        <div class="controls secondary" role="group" aria-label="Sharing">
+          <button id="btn-copy-summary" class="btn btn-ghost" type="button">Copy summary</button>
+          <button id="btn-copy-link" class="btn btn-ghost" type="button">Copy setup link</button>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="setup-heading">
+        <h2 id="setup-heading">Setup</h2>
+        <form id="setup-form" novalidate>
+          <div class="field">
+            <label for="title">Meeting title <span class="optional">(optional)</span></label>
+            <input id="title" name="title" type="text" maxlength="120" autocomplete="off" placeholder="e.g. Weekly sync" />
+          </div>
+
+          <fieldset class="field mode">
+            <legend>Attendees</legend>
+            <label class="radio"><input type="radio" name="mode" value="simple" checked /> Simple (one average)</label>
+            <label class="radio"><input type="radio" name="mode" value="advanced" /> Advanced (groups by role)</label>
+          </fieldset>
+
+          <div id="simple-fields" class="grid">
+            <div class="field">
+              <label for="attendees">Number of attendees</label>
+              <input id="attendees" name="attendees" type="number" min="1" max="10000" step="1" inputmode="numeric" />
+            </div>
+            <div class="field">
+              <label for="salary">Average annual salary</label>
+              <input id="salary" name="salary" type="number" min="0" step="1000" inputmode="numeric" />
+            </div>
+          </div>
+
+          <div id="advanced-fields" hidden>
+            <div class="table-wrap">
+              <table class="groups-table">
+                <caption class="visually-hidden">Attendee groups</caption>
+                <thead>
+                  <tr><th scope="col">Role</th><th scope="col">Count</th><th scope="col">Annual salary</th><th scope="col"><span class="visually-hidden">Actions</span></th></tr>
+                </thead>
+                <tbody id="groups-body"></tbody>
+              </table>
+            </div>
+            <button id="btn-add-group" class="btn btn-ghost" type="button">+ Add group</button>
+          </div>
+
+          <div class="grid">
+            <div class="field">
+              <label for="currency">Currency</label>
+              <select id="currency" name="currency"></select>
+            </div>
+            <div class="field">
+              <label for="multiplier" class="label-with-tip">Fully loaded multiplier</label>
+              <span class="tip">
+                <button type="button" class="tip-btn" aria-describedby="multiplier-tip" aria-label="What is the fully loaded multiplier?">?</button>
+                <span role="tooltip" id="multiplier-tip" class="tip-text">
+                  Salary isn't the whole cost of an employee. Benefits, payroll taxes, equipment,
+                  office space and other overhead typically add 25-40%. A multiplier of 1.3 means
+                  each person really costs 1.3x their salary. Use 1.0 for salary only.
+                </span>
+              </span>
+              <input id="multiplier" name="multiplier" type="number" min="0.1" max="10" step="0.05" aria-describedby="multiplier-tip" />
+            </div>
+            <div class="field">
+              <label for="hours">Working hours per year</label>
+              <input id="hours" name="hours" type="number" min="1" max="8784" step="1" inputmode="numeric" />
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <section class="card" aria-labelledby="history-heading">
+        <h2 id="history-heading">History</h2>
+        <p id="history-total" class="history-total"></p>
+        <div class="table-wrap">
+          <table class="history-table" id="history-table">
+            <caption class="visually-hidden">Completed meetings</caption>
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Title</th>
+                <th scope="col">Duration</th>
+                <th scope="col">People</th>
+                <th scope="col">Cost</th>
+                <th scope="col"><span class="visually-hidden">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody id="history-body"></tbody>
+          </table>
+        </div>
+        <p id="history-empty" class="muted">No saved meetings yet. Use "End &amp; save" to record one.</p>
+      </section>
+
+      <section class="card" aria-labelledby="data-heading">
+        <h2 id="data-heading">Your data</h2>
+        <p class="muted">Everything is stored only in this browser. Export a backup to move it elsewhere.</p>
+        <div class="controls">
+          <button id="btn-export" class="btn" type="button">Export JSON</button>
+          <button id="btn-import" class="btn" type="button">Import JSON</button>
+          <input id="import-file" type="file" accept="application/json,.json" hidden />
+          <button id="btn-reset-all" class="btn btn-danger" type="button">Reset all data</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Runs entirely in your browser. No data leaves your device.</p>
+    </footer>
+
+    <dialog id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-desc">
+      <form method="dialog">
+        <h2 id="confirm-title">Reset all data?</h2>
+        <p id="confirm-desc">This permanently deletes your setup, meeting history and any running timer from this browser. Consider exporting first.</p>
+        <div class="controls">
+          <button value="cancel" class="btn" autofocus>Cancel</button>
+          <button value="confirm" class="btn btn-danger">Delete everything</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
