@@ -20,6 +20,11 @@ import * as store from './storage.js';
 import { buildIssueUrl } from './feedback.js';
 import { getVisitCount, formatVisits } from './visits.js';
 
+import { initInstallButton } from './install.js';
+
+// Offer an "Install app" button when the browser allows it and the app isn't installed yet.
+initInstallButton({ appName: 'Burnrate', selector: '.site-header' });
+
 /* ---------- DOM refs ---------- */
 const $ = (id) => document.getElementById(id);
 const el = {
